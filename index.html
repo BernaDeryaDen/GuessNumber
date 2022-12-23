@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <br />
+    <br />
+    <label for="tahmin" id="tahmin"></label>
+    <input type="number" id="tahminValue" />
+    <br />
+    <button onclick="tahminYap()">Tahmin Yap</button>
+    <hr />
+    <span id="oneri"></span>
+    <br />
+    <span id="sonuc"></span>
+    <script>
+      const sayi = Math.floor(Math.random() * 100) + 1;
+      console.log(sayi);
+      const tahmin = document.getElementById("tahmin");
+      const tahminValueInput = document.getElementById("tahminValue");
+      let tahminNumber = 1;
+      let tahminValue;
+      tahmin.innerHTML = `${tahminNumber}. tahmini girin:`;
+      tahminValueInput.addEventListener("input", function () {
+        tahminValue = Number(tahminValueInput.value);
+      });
+      console.log(tahminValue);
+      function tahminYap() {
+        console.log(tahminValue);
+        while (tahminValue != sayi && tahminNumber < 8) {
+          tahminNumber++;
+          tahmin.innerHTML = `${tahminNumber}. tahmini girin:`;
+          if (tahminValue > sayi) {
+            oneri.innerHTML = "Daha küçük bir sayı giriniz";
+          } else if (tahminValue < sayi) {
+            oneri.innerHTML = "Daha büyük bir sayı giriniz";
+          }
+          break;
+        }
+        if (tahminValue == sayi) {
+          console.log("Sayı bulundu");
+          sonuc.innerHTML = `Sayı ${tahminNumber} denemede bulundu`;
+        } else if (tahminNumber == 8) {
+          oneri.innerHTML = "Deneme hakkınız kalmadı.Kaybettiniz.";
+        }
+      }
+    </script>
+  </body>
+</html>
